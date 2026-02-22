@@ -8,25 +8,25 @@ The project exposes native methods for addition, subtraction, multiplication, an
 
 1. Java Layer
 
-  MyJNI.java defines native methods
-  
-  Loads native library with System.loadLibrary("MyJNILib")
-  
-  Acts as a client to the native code
+    MyJNI.java defines native methods
+    
+    Loads native library with System.loadLibrary("MyJNILib")
+    
+    Acts as a client to the native code
 
 2. Native Layer (C)
 
-  Implements the arithmetic operations
-  
-  Functions follow JNI naming convention: Java_<ClassName>_<MethodName>
-  
-  Handles data type conversion between Java and C (jint, jdouble)
+    Implements the arithmetic operations
+    
+    Functions follow JNI naming convention: Java_<ClassName>_<MethodName>
+    
+    Handles data type conversion between Java and C (jint, jdouble)
 
 3. JNI Bridge
 
-  Connects Java runtime to compiled native library
-  
-  Handles memory and type marshaling
+    Connects Java runtime to compiled native library
+    
+    Handles memory and type marshaling
 
 **⚙️ How It Works**
 
@@ -44,25 +44,25 @@ The project exposes native methods for addition, subtraction, multiplication, an
 
 Step 1: Compile Java Class
 
-  javac -h MyJNI.java
-
-  Produces MyJNI.class and MyJNI.h
+      javac -h MyJNI.java
+    
+      Produces MyJNI.class and MyJNI.h
 
 STEP 2: Set JAVA_HOME
 
-  export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+      export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 
 Step 3: Compile C Library
 
-  gcc -shared -fpic -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -o libMyJNILib.so MyJNILib.c
+      gcc -shared -fpic -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -o libMyJNILib.so MyJNILib.c
 
-  Produces libMyJNILib.so
+      Produces libMyJNILib.so
 
 Step 4: Run Java Program
 
-  java -Djava.library.path=. MyJNI
-
-  -Djava.library.path=. tells JVM to look in the current folder for libMyJNILib.so
+      java -Djava.library.path=. MyJNI
+    
+      -Djava.library.path=. tells JVM to look in the current folder for libMyJNILib.so
   
 
   
